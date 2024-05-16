@@ -84,6 +84,7 @@ func (p *Provider) FetchUser(session goth.Session) (goth.User, error) {
 		RefreshToken: sess.RefreshToken,
 		ExpiresAt:    sess.ExpiresAt,
 		UserID:       sess.UserID,
+		IDToken:      sess.IDToken,
 	}
 
 	if user.AccessToken == "" {

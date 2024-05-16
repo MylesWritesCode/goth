@@ -16,6 +16,7 @@ type Session struct {
 	RefreshToken string
 	ExpiresAt    time.Time
 	UserID       string
+	IDToken      string
 }
 
 var _ goth.Session = &Session{}
@@ -43,6 +44,7 @@ func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string,
 	s.AccessToken = token.AccessToken
 	s.RefreshToken = token.RefreshToken
 	s.ExpiresAt = token.Expiry
+	s.IDToken = token.Extra("id_token").(string)
 	return token.AccessToken, err
 }
 
